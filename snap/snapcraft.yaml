@@ -72,9 +72,66 @@ parts:
       egmde.desktop: bin/
 
   mesa:
-    plugin: nil
+    plugin: meson
+    source: https://gitlab.freedesktop.org/mesa/mesa.git
+    source-tag: mesa-18.2.8
+    source-depth: 1
+    meson-parameters:
+    - --buildtype=debug
+    - --prefix=/usr
+    build-packages:
+    - mesa-common-dev
+    - libglvnd-dev
+    - libdrm-dev
+    - libx11-dev
+    - libx11-xcb-dev
+    - libxcb-dri3-dev
+    - libxcb-present-dev
+    - libxcb-sync-dev
+    - libxshmfence-dev
+    - libxcb-dri2-0-dev
+    - libxcb-glx0-dev
+    - libxdamage-dev
+    - libxext-dev
+    - libxfixes-dev
+    - libxxf86vm-dev
+    - x11proto-dev
+    - libxrandr-dev
+    - libexpat1-dev
+    - llvm
+    - libelf-dev
+    - python
+    - python-mako
+    - bison
+    - flex
+    - wayland-protocols
+    - libwayland-egl-backend-dev
+    # configflags:
+    # - --enable-llvm
+    # - --with-dri-drivers=i965
+    # - --enable-debug
     stage-packages:
-    - libgl1-mesa-dri
+    - libdrm-amdgpu1
+    - libdrm-intel1
+    - libdrm-nouveau2
+    - libdrm-radeon1
+    - libdrm2
+    - libelf1
+    - libexpat1
+    - libgcc1
+    - libglapi-mesa
+    - libllvm7
+    - libsensors4
+    - libstdc++6
+    - zlib1g
+    - libllvm6.0
+    - libxdamage1
+    - libxext6
+    - libxxf86vm1
+    - libxcb-glx0
+    - libxcb-randr0
+    # stage-packages:
+    # - libgl1-mesa-dri
     prime:
       - -lib/udev
       - -usr/doc
@@ -90,3 +147,8 @@ parts:
       - -usr/share/lintian
       - -usr/share/man
       - -usr/share/pkgconfig
+    stage:
+      - -usr/lib/x86_64-linux-gnu/libEGL.so.1.0.0
+      - -usr/lib/x86_64-linux-gnu/libGLESv2.so.2.0.0
+      - -usr/lib/x86_64-linux-gnu/libgbm.so.1.0.0
+      - -usr/lib/x86_64-linux-gnu/libglapi.so.0.0.0
